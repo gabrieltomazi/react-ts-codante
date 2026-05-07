@@ -1,19 +1,22 @@
-import { useEffect, useRef } from "react";
-import { fetchRandomColor } from "../lib/services";
+import { useContext, useEffect, useRef } from "react";
+import { fetchQuote, fetchRandomColor } from "../lib/services";
 import Button from "./Button";
+import context from "../context/context";
 
-type HeaderCardProps = {
-  handleChangeQuoteClick: React.MouseEventHandler<HTMLButtonElement>;
-  setBgColor: React.Dispatch<React.SetStateAction<string>>;
-  bgColor: string;
-};
 
-export default function HeaderCard({
-  handleChangeQuoteClick,
-  bgColor,
-  setBgColor,
-}: HeaderCardProps) {
+export default function HeaderCard() {
   //
+
+  const { bgColor, setBgColor, setQuote } = useContext(context)
+
+  async function handleChangeQuoteClick() {
+    const quote = await fetchQuote();
+    const color = await fetchRandomColor();
+    setQuote(quote);
+    setBgColor(color.hex);
+  }
+
+
   async function handleChangeColorClick() {
     const newColor = await fetchRandomColor();
     setBgColor(newColor.hex);

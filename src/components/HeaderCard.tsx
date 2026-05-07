@@ -47,7 +47,7 @@ export default function HeaderCard() {
         Me dê uma dose de ânimo
       </Button>
 
-      <Button onClick={handleChangeColorClick}>Trocar de cor</Button>
+      <Button className="ml-2" onClick={handleChangeColorClick}>Trocar de cor</Button>
 
       <label
         htmlFor="color-changer"
